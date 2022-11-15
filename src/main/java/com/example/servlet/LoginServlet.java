@@ -2,6 +2,7 @@ package com.example.servlet;
 
 import com.example.Users;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,13 +21,13 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         if (Users.getInstance().getUsers().contains("login")
             && !req.getParameter("password").isEmpty()) {
-            req.getSession().setAttribute("user", Users.getInstance().getUsers());
+            req.getSession().setAttribute("user", "user");
             res.sendRedirect(" /user/hello.jsp");
         } else {
-            res.sendRedirect("/login.jsp.*/");
+            req.getRequestDispatcher("/login.jsp.*/").forward(req, res);
         }
     }
 
