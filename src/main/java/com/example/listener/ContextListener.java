@@ -1,5 +1,11 @@
 package com.example.listener;
 
-public class ContextListener {
-    //write your code here!
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import java.time.LocalDateTime;
+
+public class ContextListener implements ServletContextListener {
+    public void contextInitialized(ServletContextEvent e){
+        e.getServletContext().setAttribute("servletTimeInit",  LocalDateTime.now());
+    }
 }

@@ -1,5 +1,15 @@
 package com.example.filter;
 
-public class AuthFilter {
-    //write your code here!
+import javax.servlet.*;
+import javax.servlet.http.HttpFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+public class AuthFilter extends HttpFilter {
+
+    public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException {
+        if (request.getSession().getAttribute("/user/*") == null)
+            response.sendRedirect("/login.jsp");
+    }
 }
